@@ -1,13 +1,15 @@
 package com.example.JobApp.job;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
-//@Table(name = "job_table")
+@Table(name = "job_table")
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     private String title;
     private String description;
@@ -19,7 +21,6 @@ public class Job {
     }
 
     public Job(Long id, String title, String description, String minSalary, String maxSalary, String location) {
-        this.id = id;
         this.title = title;
         this.description = description;
         this.minSalary = minSalary;

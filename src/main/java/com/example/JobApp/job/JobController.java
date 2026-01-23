@@ -23,10 +23,13 @@ public class JobController {
 
     }
     @PostMapping("/jobs")
-    public ResponseEntity<String> createJob(@RequestBody Job job){
+    public ResponseEntity<String> createJob(@RequestBody Job job) {
+        System.out.println("Incoming POST id = " + job.getId());
+        job.setId(null); // <-- FORCE INSERT
         jobService.createJob(job);
         return new ResponseEntity<>("Job added successfully", HttpStatus.OK);
     }
+
 
     @GetMapping("/jobs/{id}")
     public ResponseEntity<Job> getJobById(@PathVariable Long id){
