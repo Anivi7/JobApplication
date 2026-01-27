@@ -1,6 +1,7 @@
 package com.example.JobApp.job;
 
 
+import com.example.JobApp.company.Company;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -17,6 +18,10 @@ public class Job {
     private String maxSalary;
     private String location;
 
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
     public Job() {
     }
 
@@ -26,6 +31,14 @@ public class Job {
         this.minSalary = minSalary;
         this.maxSalary = maxSalary;
         this.location = location;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public Long getId() {

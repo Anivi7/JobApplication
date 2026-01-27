@@ -1,6 +1,7 @@
 package com.example.JobApp.job;
 
 
+import com.example.JobApp.company.Company;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ public class JobController {
         System.out.println("Incoming POST id = " + job.getId());
         job.setId(null); // <-- FORCE INSERT
         jobService.createJob(job);
+        Company c = job.getCompany();
         return new ResponseEntity<>("Job added successfully", HttpStatus.OK);
     }
 
